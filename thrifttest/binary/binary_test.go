@@ -16,7 +16,7 @@ func init() {
 func TestBinaryHelloWord(t *testing.T) {
 
 	sendMethod()
-	receiveResult()
+	receiveResult()  
 
 }
 
