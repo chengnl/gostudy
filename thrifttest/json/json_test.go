@@ -1,4 +1,4 @@
-package client
+package json
 
 import (
 	"net"
@@ -23,12 +23,12 @@ func sendMethod() {
     //s:="[1,\"HelloWorld\",1,1,{}]"
 	//conn.Write([]byte(s))
 
-	conn.Write([]byte{'['})//message begin
+    conn.Write([]byte{'['})//message begin
 	conn.Write([]byte("1"))//json 协议ID
 	conn.Write([]byte{','})
-	conn.Write([]byte("\"HelloWorld\"")) //METHOD NAME
+    conn.Write([]byte("\"HelloWorld\"")) //METHOD NAME
     conn.Write([]byte{','})
-	conn.Write([]byte("1"))//THRIFT CALL
+	conn.Write([]byte("1"))//THRIFT CALL 
 	conn.Write([]byte{','})
 	conn.Write([]byte("1"))// METHOD SEQID
 	conn.Write([]byte{','})

@@ -1,4 +1,4 @@
-package client
+package binary
 
 import (
 	"fmt"
