@@ -17,6 +17,7 @@ func (t *TestImpl) HelloWorld() (r string, err error) {
 //  - Name
 func (t *TestImpl) HelloWorldForString(name string) (r string, err error) {
 	fmt.Println("return:hello,world-" + name)
+	//time.Sleep(6 * time.Second)
 	return "hello,world-" + name, nil
 }
 
