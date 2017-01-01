@@ -10,6 +10,8 @@ import (
 func main() {
 	//runServer(thrift.NewTFramedTransportFactoryMaxLength(thrift.NewTTransportFactory(), 2*1024*1024), thrift.NewTBinaryProtocolFactoryDefault(), "localhost:8080")
 	runServer(thrift.NewTTransportFactory(), thrift.NewTBinaryProtocolFactoryDefault(), "localhost:8080")
+	//runServer(thrift.NewTBufferedTransportFactory(20*1024*1024), thrift.NewTBinaryProtocolFactoryDefault(), "localhost:8080")
+	//runServer(thrift.NewTZlibTransportFactory(-1), thrift.NewTBinaryProtocolFactoryDefault(), "localhost:8080")
 }
 
 func runServer(transportFactory thrift.TTransportFactory, protocolFactory thrift.TProtocolFactory, addr string) error {

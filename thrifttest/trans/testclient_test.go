@@ -15,6 +15,8 @@ var client *demo.TestServiceClient
 func init() {
 	//transportFactory := thrift.NewTFramedTransportFactory(thrift.NewTTransportFactory())
 	transportFactory := thrift.NewTTransportFactory()
+	//transportFactory := thrift.NewTBufferedTransportFactory(20 * 1024 * 1024)
+	//transportFactory := thrift.NewTZlibTransportFactory(-1)
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 	var err error
 	transport, err = thrift.NewTSocket("localhost:8080")
@@ -30,13 +32,13 @@ func init() {
 	client = demo.NewTestServiceClientFactory(transport, protocolFactory)
 }
 
-func TestHelloWord(t *testing.T) {
-	result, err := client.HelloWorld()
-	if err != nil {
-		return
-	}
-	fmt.Printf("return value=%s\n", result)
-}
+// func TestHelloWord(t *testing.T) {
+// 	result, err := client.HelloWorld()
+// 	if err != nil {
+// 		return
+// 	}
+// 	fmt.Printf("return value=%s\n", result)
+// }
 func TestHelloWordForString(t *testing.T) {
 	result, err := client.HelloWorldForString("test")
 	if err != nil {
@@ -45,21 +47,21 @@ func TestHelloWordForString(t *testing.T) {
 	fmt.Printf("return value=%s\n", result)
 }
 
-func TestHelloWordForMap(t *testing.T) {
-	test := make(map[string]int32)
-	test["test"] = 31
-	result, err := client.HelloWorldForMap(test)
-	if err != nil {
-		return
-	}
-	fmt.Printf("return value=%s\n", result)
-}
-func TestHelloWordForStruct(t *testing.T) {
-	test := demo.NewName()
-	test.Name = "test"
-	result, err := client.HelloWorldForStruct(test)
-	if err != nil {
-		return
-	}
-	fmt.Printf("return value=%s\n", result)
-}
+// func TestHelloWordForMap(t *testing.T) {
+// 	test := make(map[string]int32)
+// 	test["test"] = 31
+// 	result, err := client.HelloWorldForMap(test)
+// 	if err != nil {
+// 		return
+// 	}
+// 	fmt.Printf("return value=%s\n", result)
+// }
+// func TestHelloWordForStruct(t *testing.T) {
+// 	test := demo.NewName()
+// 	test.Name = "test"
+// 	result, err := client.HelloWorldForStruct(test)
+// 	if err != nil {
+// 		return
+// 	}
+// 	fmt.Printf("return value=%s\n", result)
+// }
