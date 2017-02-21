@@ -7,4 +7,6 @@ service TestService{
     string HelloWorldForString(1:string name)
     string HelloWorldForMap(1:map<string,i32> name)
     string HelloWorldForStruct(1:Name name)
+    void Test()
+    oneway void Test1()
 }

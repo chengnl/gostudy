@@ -21,20 +21,11 @@ func DefaultServiceFactory() *defaultServiceFactory {
 	})
 	return dsf
 }
-func (df *defaultServiceFactory) CreateService(ID, version string, timeOut int64) *thriftclient.ServiceProxy {
-	return df.factory.CreateService(df, ID, version, timeOut)
-}
-func (df *defaultServiceFactory) GenClient(ID, version string, t thrift.TTransport, f thrift.TProtocolFactory) interface{} {
-	switch ID {
-	case "demoService":
-		client := demo.NewTestServiceClientFactory(t, f)
-		return client
-	default:
-		return nil
-	}
-}
 
 //业务服务
 func (df *defaultServiceFactory) DemoService() *thriftclient.ServiceProxy {
-	return df.CreateService("demoService", "1.0", 5000)
+	return df.factory.CreateService("demoService", "1.0", 5000, func(t thrift.TTransport, f thrift.TProtocolFactory) interface{} {
+		client := demo.NewTestServiceClientFactory(t, f)
+		return client
+	})
 }
